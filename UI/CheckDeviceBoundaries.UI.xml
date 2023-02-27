@@ -1,0 +1,70 @@
+<Window 
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        Title="CCM-CDB" Height="400" Width="400" WindowStyle="SingleBorderWindow" ResizeMode="NoResize" Name="FormUI">
+    <StackPanel>
+        <Border Background="#FF044884">
+            <Label  Content="CCM - Check Boundaries" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontFamily="Arial Black" FontSize="20"/>
+        </Border>
+        <Border BorderBrush="#FF044884" BorderThickness="0,2,0,2">
+            <Grid Margin="15">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width="5"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="5"/>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="5"/>
+                    <RowDefinition Height="20"/>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Content="Search By" FontWeight="Bold" FontSize="14"/>
+                <RadioButton Name="RB_SearchByDevice" Grid.Row="2" Grid.Column="0"  Content="Device" GroupName="SearchType" Margin="0,0,0,0" IsChecked="True" />
+                <Border Grid.Row="2" Grid.Column="1" BorderThickness="1" BorderBrush="#FF044884">
+                    <TextBox Name="TXT_SearchByDevice"/>
+                </Border>
+                <RadioButton Name="RB_SearchByIP" Grid.Row="4" Grid.Column="0"  Content="IPV4" GroupName="SearchType" Margin="0,0,0,0"/>
+                <Border Grid.Row="4" Grid.Column="1" BorderThickness="1" BorderBrush="#FF044884">
+                    <TextBox Name="TXT_SearchByIP"/>
+                </Border>
+                <Button Name="B_Search" Grid.Column="3" Grid.Row="2" Grid.RowSpan="3" Content="Search" Foreground="White" Background="#FF044884"/>
+            </Grid>
+        </Border>
+
+        <Border BorderBrush="#FF044884" BorderThickness="0,2,0,2" Margin="0,10,0,0">
+            <StackPanel Orientation="Horizontal">
+                <Label>Statut :</Label>
+                <Label Name="LBL_State" Foreground="#FF0FA94A" FontWeight="Bold">Connected</Label>
+            </StackPanel>
+        </Border>
+
+        <Border BorderBrush="#FF044884" BorderThickness="0,2,0,0" Margin="0,10,0,0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="1" Grid.Column="0" Content="Boundary Include IP" FontWeight="Bold" Foreground="#FF044884"/>
+                <Label Grid.Row="2" Grid.Column="0" Content="Boundary Name :" FontWeight="Bold"/>
+                <Label Name="LBL_BoundName" Grid.Row="2" Grid.Column="1" Content="Valeur"/>
+                <Label Grid.Row="3" Grid.Column="0" Content="Plage" FontWeight="Bold"/>
+                <Label Name="LBL_BoundRange" Grid.Row="3" Grid.Column="3" Content=""/>
+                <Label Grid.Row="4" Grid.Column="0" Content="System Site :" FontWeight="Bold"/>
+                <ListBox Name="LBX_BoundSystem" Grid.Row="4" Grid.Column="1" BorderBrush="{x:Null}" />
+            </Grid>
+        </Border>
+    </StackPanel>
+</Window>
