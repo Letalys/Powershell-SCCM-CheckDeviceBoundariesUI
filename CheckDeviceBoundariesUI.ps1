@@ -9,6 +9,7 @@
   Author:         Letalys
   Creation Date:  27/02/2023
   Purpose/Change: Initial script development
+  GitHub : https://github.com/Letalys/Powershell-SCCM-CheckDeviceBoundariesUI
 #>
 
 #region Add-Type
@@ -38,7 +39,7 @@ $MainCode = {
 
 	    Import-module "C:\Program Files (x86)\Microsoft Endpoint Manager\bin\ConfigurationManager\ConfigurationManager.psd1"
 
-	    New-PSDrive -Name "$CCMDrive" -PSProvider "CMSite" -Root "$CCMServer" -Description "Site Primaire" | Out-Null
+	    New-PSDrive -Name "$CCMDrive" -PSProvider "CMSite" -Root "$CCMServer" | Out-Null
 	    Set-Location -Path "$($CCMDrive):"
     }catch{
 	    Write-Output "Script:" $PSCommandPath
