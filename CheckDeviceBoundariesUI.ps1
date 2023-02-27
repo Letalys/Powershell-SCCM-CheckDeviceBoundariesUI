@@ -11,6 +11,17 @@
   Purpose/Change: Initial script development
 #>
 
+#region Add-Type
+Add-Type -AssemblyName PresentationCore, PresentationFramework
+#endregion Add-Type
+
+#region Create Main Runspace
+$Runspace = [runspacefactory]::CreateRunspace()
+$Runspace.ApartmentState = "STA"
+$Runspace.ThreadOptions = "ReuseThread"
+$Runspace.Open()
+#endregion Create Main Runspace
+
 $MainCode = {
     Param($ScriptRoot)
 
