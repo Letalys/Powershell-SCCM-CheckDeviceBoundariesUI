@@ -33,16 +33,16 @@ $MainCode = {
 
     #Region Import SCCM Module
     try {
-        Write-Host -ForegroundColor Yellow (Get-Module -Name ConfigurationManager).Version
-        Write-Host -ForegroundColor Yellow (Get-Module -Name ConfigurationManager).Path
+        Write-Output -ForegroundColor Yellow (Get-Module -Name ConfigurationManager).Version
+        Write-Output -ForegroundColor Yellow (Get-Module -Name ConfigurationManager).Path
 
 	    Import-module "C:\Program Files (x86)\Microsoft Endpoint Manager\bin\ConfigurationManager\ConfigurationManager.psd1"
 
 	    New-PSDrive -Name "$CCMDrive" -PSProvider "CMSite" -Root "$CCMServer" -Description "Site Primaire" | Out-Null
 	    Set-Location -Path "$($CCMDrive):"
     }catch{
-	    Write-Host "Script:" $PSCommandPath
-	    Write-Host "Path:" $ScriptLocation
+	    Write-Output "Script:" $PSCommandPath
+	    Write-Output "Path:" $ScriptLocation
 	    write-Error $Error[0]
 	    exit
     }
