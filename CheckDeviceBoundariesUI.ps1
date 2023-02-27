@@ -12,6 +12,8 @@
 #>
 
 $MainCode = {
+    Param($ScriptRoot)
+
     #region Variables
     $CCMServer = "<Your SCCM Server>"
     $CCMDrive = "<Your Site Code>"
@@ -27,7 +29,6 @@ $MainCode = {
 
 	    New-PSDrive -Name "$CCMDrive" -PSProvider "CMSite" -Root "$CCMServer" -Description "Site Primaire" | Out-Null
 	    Set-Location -Path "$($CCMDrive):"
-
     }catch{
 	    Write-Host "Script:" $PSCommandPath
 	    Write-Host "Path:" $ScriptLocation
@@ -60,7 +61,7 @@ $MainCode = {
     #endregion
 
     #region XAML Loader
-    [xml]$XAML = [IO.File]::ReadAllText(".\UI\CheckDeviceBoundaries.UI.xml",[Text.Encoding]::GetEncoding(65001))
+    [xml]$XAML = [IO.File]::ReadAllText("$ScriptRoot\UI\CheckDeviceBoundaries.UI.xml",[Text.Encoding]::GetEncoding(65001))
     #endregion
 
     #region XAML UI Load
@@ -132,7 +133,6 @@ $MainCode = {
                 }
             }
     
-    
             $syncHash.Window.FindName("RB_SearchByIP").IsChecked {
                 $syncHash.Window.FindName("TXT_SearchByDevice").Text = $null
                 $CurrentSearch = $syncHash.Window.FindName("TXT_SearchByIP").Text
@@ -156,7 +156,7 @@ $MainCode = {
                 }
             }
         }
-    
+
         $BoundariesList = Get-CMBoundary
         $BoundaryFound = $false
             Foreach($b in $BoundariesList){
@@ -178,7 +178,6 @@ $MainCode = {
             }
     })
     #endregion XAML Events
-
     $syncHash.Window.ShowDialog()
     $Runspace.Close()
     $Runspace.Dispose()
@@ -188,13 +187,16 @@ $MainCode = {
 $PSInstanceMain = [powershell]::Create()
 $PSInstanceMain.AddScript($MainCode)
 
+#This is Need for the MainCode to know PSScriptRoot
+$PSInstanceMain.AddArgument($PSScriptRoot)
+
 $PSInstanceMain.Runspace = $Runspace
 $Job = $PSInstanceMain.BeginInvoke()
 
- # Wait Job Completed
- while (-not $Job.IsCompleted) {
+# Wait Job Completed
+while (-not $Job.IsCompleted) {
     Start-Sleep -Seconds 1
- }
+}
 
 $PSInstanceMain.EndInvoke($Job)
 #endregion
