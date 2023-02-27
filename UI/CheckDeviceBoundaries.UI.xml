@@ -17,7 +17,7 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="30"/>
                     <RowDefinition Height="5"/>
                     <RowDefinition Height="20"/>
                     <RowDefinition Height="5"/>
@@ -60,7 +60,7 @@
                 <Label Grid.Row="1" Grid.Column="0" Content="Boundary Include IP" FontWeight="Bold" Foreground="#FF044884"/>
                 <Label Grid.Row="2" Grid.Column="0" Content="Boundary Name :" FontWeight="Bold"/>
                 <Label Name="LBL_BoundName" Grid.Row="2" Grid.Column="1" Content="Valeur"/>
-                <Label Grid.Row="3" Grid.Column="0" Content="Plage" FontWeight="Bold"/>
+                <Label Grid.Row="3" Grid.Column="0" Content="IP Range" FontWeight="Bold"/>
                 <Label Name="LBL_BoundRange" Grid.Row="3" Grid.Column="3" Content=""/>
                 <Label Grid.Row="4" Grid.Column="0" Content="System Site :" FontWeight="Bold"/>
                 <ListBox Name="LBX_BoundSystem" Grid.Row="4" Grid.Column="1" BorderBrush="{x:Null}" />
